@@ -1,7 +1,7 @@
 package base;
 
-import org.openqa.selenium.WebDriver;
 import factory.DriverFactory;
+import org.openqa.selenium.WebDriver;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -22,12 +22,16 @@ public class BaseClass {
     }
 
     // Launch WebDriver based on browser type
-    public static void launchWebDriver() {
+    public static WebDriver launchWebDriver() {
+        if (prop == null) {
+            throw new IllegalStateException("Properties not loaded. Call loadConfig() first.");
+        }
         String browserName = prop.getProperty("browser");
         WebDriver driver = DriverFactory.getDriver(browserName);
 
         driver.manage().window().maximize();
         driver.get(prop.getProperty("url"));
+        return driver;
     }
 
     // Quit driver

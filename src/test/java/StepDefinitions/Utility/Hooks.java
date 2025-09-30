@@ -55,23 +55,30 @@ public class Hooks {
     public void tearDown(Scenario scenario) {
         WebDriver driver = DriverFactory.getDriver();
 
-        if (scenario.isFailed()) {
-            scenarioTest.get().fail("Scenario Failed: " + scenario.getName());
-            String screenshotPath = takeScreenshot(scenario.getName(), driver);
-            if (screenshotPath != null) {
-                try {
+        try {
+            if (scenario.isFailed() && driver != null) {
+                scenarioTest.get().fail("Scenario Failed: " + scenario.getName());
+                String screenshotPath = takeScreenshot(scenario.getName(), driver);
+                if (screenshotPath != null) {
                     scenarioTest.get().addScreenCaptureFromPath(screenshotPath, "Failed Screenshot");
+                }
+                attachScreenshotToCucumber(scenario, driver);
+            } else if (driver != null) {
+                scenarioTest.get().pass("Scenario Passed: " + scenario.getName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Quit the driver safely before removing it
+            if (driver != null) {
+                try {
+                    driver.quit();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println("Error quitting driver: " + e.getMessage());
+                } finally {
+                    DriverFactory.removeDriver();
                 }
             }
-            attachScreenshotToCucumber(scenario, driver);
-        } else {
-            scenarioTest.get().pass("Scenario Passed: " + scenario.getName());
-        }
-
-        if (driver != null) {
-            DriverFactory.removeDriver();
         }
     }
 

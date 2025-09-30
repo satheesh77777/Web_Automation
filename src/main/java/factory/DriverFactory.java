@@ -1,5 +1,6 @@
 package factory;
 
+import base.BaseClass;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,11 +8,19 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
 
-    // Thread-safe WebDriver for parallel execution
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    // Get driver (initialize if null)
+    // Initialize driver with browser from config if null
     public static WebDriver getDriver(String browser) {
+        if (browser == null) {
+            // fallback to browser from config.properties
+            if (BaseClass.prop != null) {
+                browser = BaseClass.prop.getProperty("browser");
+            } else {
+                throw new IllegalArgumentException("Browser is not specified and config is not loaded.");
+            }
+        }
+
         if (driver.get() == null) {
             switch (browser.toLowerCase()) {
                 case "chrome":
@@ -29,12 +38,16 @@ public class DriverFactory {
         return driver.get();
     }
 
-    // Get driver without browser (already initialized)
+    // Get driver without passing browser (must be initialized)
     public static WebDriver getDriver() {
-        return driver.get();
+        WebDriver drv = driver.get();
+        if (drv == null) {
+            throw new IllegalStateException("WebDriver has not been initialized. Call getDriver(browser) first.");
+        }
+        return drv;
     }
 
-    // Remove driver from ThreadLocal (cleanup)
+    // Remove driver from ThreadLocal
     public static void removeDriver() {
         driver.remove();
     }
