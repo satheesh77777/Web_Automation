@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class Action extends BaseClass implements ActionInterface {
+public class Action implements ActionInterface {
 
     @Override
     public void scrollByVisibilityOfElement(WebDriver driver, WebElement ele) {
@@ -248,30 +248,35 @@ public class Action extends BaseClass implements ActionInterface {
     }
 
     @Override
-    public boolean mouseHoverByJavaScript(WebElement ele) {
-        boolean flag = false;
-        try {
-            WebElement mo = ele;
-            String javaScript = "var evObj = document.createEvent('MouseEvents');"
-                    + "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);"
-                    + "arguments[0].dispatchEvent(evObj);";
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript(javaScript, mo);
-            flag = true;
-            return true;
-        }
-
-        catch (Exception e) {
-
-            return false;
-        } finally {
-            if (flag) {
-                System.out.println("MouseOver Action is performed");
-            } else {
-                System.out.println("MouseOver Action is not performed");
-            }
-        }
+    public boolean mouseHoverByJavaScript(WebElement locator) {
+        return false;
     }
+
+//    @Override
+//    public boolean mouseHoverByJavaScript(WebElement ele) {
+//        boolean flag = false;
+//        try {
+//            WebElement mo = ele;
+//            String javaScript = "var evObj = document.createEvent('MouseEvents');"
+//                    + "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);"
+//                    + "arguments[0].dispatchEvent(evObj);";
+//            JavascriptExecutor js = (JavascriptExecutor) driver;
+//            js.executeScript(javaScript, mo);
+//            flag = true;
+//            return true;
+//        }
+//
+//        catch (Exception e) {
+//
+//            return false;
+//        } finally {
+//            if (flag) {
+//                System.out.println("MouseOver Action is performed");
+//            } else {
+//                System.out.println("MouseOver Action is not performed");
+//            }
+//        }
+//    }
 
     @Override
     public boolean JSClick(WebDriver driver, WebElement ele) {
