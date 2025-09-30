@@ -1,23 +1,19 @@
 package Runnerclass;
 
-import base.BaseClass; // Import BaseClass
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import static base.BaseClass.driver;
 
 @CucumberOptions(
-        features = "src/test/resources/features", // Path to feature files
-        glue = {"StepDefinitions"}, // Correct package paths
-        plugin = {"pretty", "html:target/cucumber-reports"}, // Plugins for reporting
-        tags = "@Mobile", // Tags to filter scenarios
-        monochrome = true // Makes console output readable
+        features = "src/test/resources/features",
+        glue = {"StepDefinitions"},
+        plugin = {"pretty", "html:target/cucumber-reports.html"},
+        monochrome = true
 )
-public class TestRunner extends AbstractTestNGCucumberTests { // Extend only one class
-
-
+public class TestRunner extends AbstractTestNGCucumberTests {
+    @Override
+    @DataProvider(parallel = true)
+    public Object[][] scenarios() {
+        return super.scenarios();
+    }
 }

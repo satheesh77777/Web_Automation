@@ -3,6 +3,7 @@ package pageObjects;
 import actoinDriver.Action;
 import base.BaseClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 public class ProductSummaryPage extends BaseClass {
     Action action = new Action();
+    WebDriver driver;
 
     @FindBy(xpath = "//div[contains(text(),'Total Payable')]")
     private WebElement verifyAmount;
@@ -49,9 +51,13 @@ public class ProductSummaryPage extends BaseClass {
 
 
 
-    public ProductSummaryPage(){
-        PageFactory.initElements(driver,this);
-    }
+//    public ProductSummaryPage(){
+//        PageFactory.initElements(driver,this);
+//    }
+public ProductSummaryPage(WebDriver driver) {
+    this.driver = driver; // ✅ get thread-safe driver
+    PageFactory.initElements(driver, this);
+}
 public void verifyAmount(){
         action.isDisplayed(driver,verifyAmount);
 }

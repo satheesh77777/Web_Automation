@@ -1,13 +1,14 @@
 package StepDefinitions;
 
 import base.BaseClass;
+import factory.DriverFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pageObjects.ProductSummaryPage;
 
 public class ProductSummaryPageSteps extends BaseClass {
 
-    ProductSummaryPage productSummaryPage = new ProductSummaryPage();
+    ProductSummaryPage productSummaryPage = new ProductSummaryPage(DriverFactory.getDriver());
     @Then("user Verifies Product Summary Page")
     public void userVerifiesProductSummaryPage(){
         productSummaryPage.verifyProductSummaryPage();

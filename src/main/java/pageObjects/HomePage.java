@@ -1,42 +1,37 @@
 package pageObjects;
 
 import actoinDriver.Action;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static base.BaseClass.driver;
 
 public class HomePage {
     Action action = new Action();
+    WebDriver driver; // instance driver from DriverFactory
 
     @FindBy(xpath = "//button[@type='submit']")
     WebElement searchButton;
+
     @FindBy(xpath = "//input[@name='q']")
     WebElement searchProductBox;
-    public HomePage() {
+
+    public HomePage(WebDriver driver) {
+        this.driver = driver;
+        this.action = new Action();
         PageFactory.initElements(driver, this);
     }
-    public boolean SearchProduct(String ProductName) throws InterruptedException {
 
-
-        // Check if the search product box is displayed
-        Thread.sleep(20000);
-        if (action.isDisplayed(driver,searchProductBox)) {
-            // Click on the search product box
-            action.click(driver, searchProductBox);
-
-            // Enter the product name
-            action.type(searchProductBox,ProductName);
-            // Return true if the product name is entered successfully
-            return true;
-        }
-            // If the search product box is not displayed, return false
-        return false;
+    public void SearchProduct(String productName) throws InterruptedException {
+        Thread.sleep(2000); // better use explicit wait instead of Thread.sleep
+action.click(driver,searchProductBox);
+        action.type(searchProductBox,productName);
     }
-    public SearchResultPage clicksSearchIcon(){
+    public void clicksSearchIcon(){
         action.click(driver,searchButton);
-        return new SearchResultPage();
     }
+
 
 }
