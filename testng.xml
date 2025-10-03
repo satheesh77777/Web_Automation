@@ -7,5 +7,10 @@
             <class name="Runnerclass.TestRunner"/>
         </classes>
     </test>
+    <test name="Cucumber Test Execution" preserve-order="true" verbose="2">
+        <classes>
+            <class name="Runnerclass.FailedScenarioRunner"/>
+        </classes>
+    </test>
 
 </suite>

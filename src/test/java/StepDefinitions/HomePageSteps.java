@@ -13,8 +13,9 @@ public class HomePageSteps extends BaseClass {
     @Given("user Navigates To Flipkart Homepage")
     public void userNavigatesToFlipkartHomepage() {
         loadConfig();
-        launchWebDriver(); // make sure driver is initialized here
+        launchWebDriver();// make sure driver is initialized here
         home = new HomePage(DriverFactory.getDriver()); // now driver is ready
+
     }
 
     @And("user Searches For Product {string}")
@@ -28,4 +29,6 @@ public class HomePageSteps extends BaseClass {
     public void userClicksOnSearchIcon() {
         home.clicksSearchIcon(); // updated method name
     }
+
+
 }
