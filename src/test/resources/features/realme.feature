@@ -1,7 +1,7 @@
-Feature: verify Each Mobile Features
+Feature: verify Realme Mobile Features
 
   @Mobile
-  Scenario Outline:successfully Verify Mobile Features
+  Scenario Outline:successfully Verify Realme Mobile Features
 
   #Home Page
     Given user Navigates To Flipkart Homepage
@@ -16,12 +16,12 @@ Feature: verify Each Mobile Features
     Then user Navigates To Product Summary Tab
     And user Verifies Product Summary Page
     And user Verifies Product Price "<productPrice>"
-#    And user Verifies Display Size "<displaySize>" In Highlight Section
-#    And user Verifies ROM Size "<ROMSize>" In Highlight Section
+    And user Verifies Display Size "<displaySize>" In Highlight Section
+    And user Verifies ROM Size "<ROMSize>" In Highlight Section
 #    And user Verifies Battery Type "<batteryType>"
-#    When user Clicks On Read More Button
-#    Then user Verifies Operating System "<operatingSystem>"
-#    And user Verifies Processor Brand "<processorBrand>"
+    When user Clicks On Read More Button
+    Then user Verifies Operating System "<operatingSystem>"
+    And user Verifies Processor Brand "<processorBrand>"
 
 
 
@@ -31,10 +31,8 @@ Feature: verify Each Mobile Features
 
 
     Examples:
-      | productDescription    | productName                             | productPrice | displaySize         | ROMSize | batteryType |operatingSystem|processorBrand|
-      |realme mobile          |realme C61 (Safari Green, 64 GB)         |₹6,799     |17.53 cm (6.9 inch)  |2 TB ROM |Lithium Ion  |iOS 26         |Apple         |
-#      |Redmi note 8           |Redmi Note 8 (Cosmic Purple, 64 GB)      |₹7,999        |16.0 cm (6.3 inch)   |64 GB ROM|lithium-ion  |Android Pie 9  |Snapdragon    |
-
+      | productDescription    | productName                             | productPrice | displaySize         | ROMSize         | batteryType |operatingSystem|processorBrand|
+      |realme mobile          |realme C61 (Safari Green, 64 GB)         |₹6,999        |17.13 cm             |64 GB             |Lithium Ion  |Android 14      |Unisoc         |
 
 
 

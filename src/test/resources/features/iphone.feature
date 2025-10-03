@@ -33,7 +33,6 @@ Feature: verify Each Mobile Features
     Examples:
       | productDescription    | productName                             | productPrice | displaySize         | ROMSize | batteryType |operatingSystem|processorBrand|
     |Apple iphone 17 pro max|Apple iPhone 17 Pro Max (Deep Blue, 2 TB)|₹2,29,900     |17.53 cm (6.9 inch)  |2 TB ROM |Lithium Ion  |iOS 26         |Apple         |
-#      |Redmi note 8           |Redmi Note 8 (Cosmic Purple, 64 GB)      |₹7,999        |16.0 cm (6.3 inch)   |64 GB ROM|lithium-ion  |Android Pie 9  |Snapdragon    |
 
 
 

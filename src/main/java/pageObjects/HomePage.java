@@ -15,6 +15,9 @@ public class HomePage {
     @FindBy(xpath = "//button[@type='submit']")
     WebElement searchButton;
 
+    @FindBy(xpath = "//textarea[@title='Search']")
+    WebElement googleSearchBox;
+
     @FindBy(xpath = "//input[@name='q']")
     WebElement searchProductBox;
 
@@ -22,6 +25,9 @@ public class HomePage {
         this.driver = driver;
         this.action = new Action();
         PageFactory.initElements(driver, this);
+    }
+    public void flipkartHomepage(){
+
     }
 
     public void SearchProduct(String productName) throws InterruptedException {
