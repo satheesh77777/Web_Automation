@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="classes" thread-count="3">
+
+    <!-- ✅ Add Retry Listener here -->
+    <listeners>
+        <listener class-name="listeners.RetryListener_IAnnotationTransformer"/>
+    </listeners>
+
+    <!-- ✅ Main Execution -->
+    <test name="Cucumber Test Execution" preserve-order="true" verbose="2">
+        <classes>
+            <class name="Runnerclass.TestRunner"/>
+        </classes>
+    </test>
+
+<!--    &lt;!&ndash; ✅ Re-run only failed scenarios &ndash;&gt;-->
+<!--    <test name="Re-Run Failed Scenarios" preserve-order="true" verbose="2">-->
+<!--        <classes>-->
+<!--            <class name="Runnerclass.FailedScenarioRunner"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+</suite>
